@@ -1,0 +1,92 @@
+<!DOCTYPE >
+<html>
+    <head>
+        <title>
+            Login 
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+         .form-container {
+           /*margin: 30% auto;*/
+           display: block;
+            width:400px;
+            height:200px;
+             text-align:center;
+             background-color: #588386;
+}
+        *{
+             -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+         }
+         .wrapper{
+             position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+           
+         }
+         body{
+          background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1-YRhSWe7_mSLOl9ZYzbJzuPu6D6RRvPu5xdYUMW2OiXEmX91ZeEpj0mDAzdgTsujhBQ&usqp=CAU);
+          left: 50%;
+          top: 50%;
+         }
+
+        </style>
+      </head>
+      <body>
+        <div class="parent">
+          <div class="wrapper">
+            <div class="form-container">
+              <h2>Login Form</h2>
+                  <form action="#">
+                     <div id="bg">
+                         <div id="form" >
+                             <input type="email" name ="email" id="email" placeholder="email">
+                            </div>
+                            <div id="form">
+                              <input type="password"  id="pass" placeholder="password">
+                            </div>
+                           </div>
+        
+                          <button type="button" onClick="saveData()">Submit</button>
+                       </form>
+       </div>
+     </body>
+        
+          </div>
+  
+          </div>
+        
+
+      <script>
+         let name=localStorage.getItem('name')?localStorage.getItem('name'):''
+        console.log(name);
+       
+function saveData()
+{
+    let email,psw;
+    email=document.getElementById("email").value;
+    psw=document.getElementById("pass").value;
+    let user_records=new Array();
+    user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
+    if(user_records.some((v)=>{return v.email==email && v.psw==psw}))
+    {
+        alert("Login Pass");
+        let current_user=user_records.filter((v)=>{return v.email==email && v.psw==psw})[0];
+        localStorage.setItem('name',current_user.name);
+        localStorage.setItem('email',current_user.email);
+        window.location.href="result.html"
+    }
+    else
+    {
+         alert('Login Fail');
+    }
+}
+</script>
+</html>
